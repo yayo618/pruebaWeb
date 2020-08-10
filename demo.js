@@ -1,4 +1,5 @@
 var scene, camera, renderer, mesh;
+var keyboard = {};
 
 function init()
 {
@@ -28,8 +29,28 @@ function animate()
 
 	mesh.rotation.x += 0.01;
 	mesh.rotation.y += 0.02;
+	
+	if(keyboard[37]){ //left arrow key
+		camera.rotation.y -= Math.PI * 0.01;
+	}
+	if(keyboard[39]){ //right arrow key
+		camera.rotation.y += Math.PI * 0.02;
+	}
+	
 
 	renderer.render(scene,camera);
 }
+
+function keyDown(event)
+{
+	keyboard[event.keyCode] = true;
+}
+function keyUp(event)
+{
+	keyboard[event.keyCode] = false;
+}
+
+window.addEventListener('keydown', keyDown);
+window.addEventListener('keyup', keyUp);
 
 window.onload = init;
