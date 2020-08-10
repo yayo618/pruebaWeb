@@ -1,4 +1,6 @@
 var scene, camera, renderer, mesh;
+var meshFloor;
+
 var keyboard = {};
 var player = {height:1.8};
 
@@ -13,6 +15,12 @@ function init()
 	);
 
 	scene.add(mesh);
+
+	meshFloor = new THREE.Mesh(
+		new THREE.PlaneGeometry(10,10),
+		new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true})
+	);
+	scene.add(meshFloor);
 
 	camera.position.set(0,player.height,-5);
 	camera.lookAt(new THREE.Vector3(0,player.height,0));
