@@ -1,5 +1,6 @@
 var scene, camera, renderer, mesh;
 var keyboard = {};
+var player = {height:1.8};
 
 function init()
 {
@@ -13,8 +14,8 @@ function init()
 
 	scene.add(mesh);
 
-	camera.position.set(0,0,-5);
-	camera.lookAt(new THREE.Vector3(0,0,0));
+	camera.position.set(0,player.height,-5);
+	camera.lookAt(new THREE.Vector3(0,player.height,0));
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(1200,720);
