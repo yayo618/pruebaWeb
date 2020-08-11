@@ -15,6 +15,8 @@ function init()
 	);
 
 	mesh.position.y += 1;
+	mesh.receiveShadow = true;
+	mesh.castShadow = true;
 	scene.add(mesh);
 
 	meshFloor = new THREE.Mesh(
@@ -22,6 +24,7 @@ function init()
 		new THREE.MeshPhongMaterial({color:0xffffff,wireframe:false})
 	);
 	meshFloor.rotation.x -= Math.PI/2;
+	meshFloor.receiveShadow = true;
 	scene.add(meshFloor);
 
 	ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
