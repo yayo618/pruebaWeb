@@ -2,7 +2,7 @@ var scene, camera, renderer, mesh;
 var meshFloor;
 
 var keyboard = {};
-var player = {height:1.8, speed:0.2};
+var player = {height:1.8, speed:0.2, turnSpeed:Math.PI*0.02};
 
 function init()
 {
@@ -11,14 +11,15 @@ function init()
 
 	mesh = new THREE.Mesh(
 		new THREE.BoxGeometry(1,1,1),
-		new THREE.MeshBasicMaterial({color:0xff9999, wireframe:true})
+		new THREE.MeshBasicMaterial({color:0xff9999, wireframe:false})
 	);
 
+	mesh.position.y += 1;
 	scene.add(mesh);
 
 	meshFloor = new THREE.Mesh(
 		new THREE.PlaneGeometry(10,10,10,10),
-		new THREE.MeshBasicMaterial({color:0xffffff,wireframe:true})
+		new THREE.MeshBasicMaterial({color:0xffffff,wireframe:false})
 	);
 	meshFloor.rotation.x -= Math.PI/2;
 	scene.add(meshFloor);
@@ -58,10 +59,10 @@ function animate()
 	}
 
 	if(keyboard[37]){ //left arrow key
-		camera.rotation.y -= Math.PI * 0.01;
+		camera.rotation.y -= player.turnSpeed;
 	}
 	if(keyboard[39]){ //right arrow key
-		camera.rotation.y += Math.PI * 0.02;
+		camera.rotation.y += player.turnSpeed;
 	}
 	
 
